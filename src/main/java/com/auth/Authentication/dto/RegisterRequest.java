@@ -1,14 +1,14 @@
 package com.auth.Authentication.dto;
 
 public class RegisterRequest {
-    private String username;
+    private String name;
     private String email; // New field for email
     private String password;
     private String role; // Role can be "COACH", "ATHLETE", or "ADMIN"
 
-    // Getters and Setters
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
+    // Getters and Setter
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
     public String getPassword() { return password; }

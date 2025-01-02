@@ -13,7 +13,8 @@ public interface UserService {
     @Autowired
     UserRepository userRepository = null;
 
-    public default User findUserByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public default User findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
+
 }

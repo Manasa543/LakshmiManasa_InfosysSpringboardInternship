@@ -1,9 +1,7 @@
 package com.auth.Authentication.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
-
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,10 +12,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
-
+    @Column(unique = true, nullable = false)
     private String email; // New field for email
+
     private String name;
+
+    @Column(nullable = false)
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -28,6 +28,18 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
+    @JsonManagedReference
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Admin admin;
+
+    @JsonManagedReference
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Athlete athlete;
+
+    @JsonManagedReference
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Coach coach;
+
     // Getters and Setters
     public Long getId() {
         return id;
@@ -37,12 +49,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -69,10 +81,27 @@ public class User {
         this.roles = roles;
     }
 
-
-    public String getName() {
-        return name; // Full name of the user
+    public Athlete getAthlete() {
+        return athlete;
     }
 
+    public void setAthlete(Athlete athlete) {
+        this.athlete = athlete;
+    }
 
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public void setCoach(Coach coach) {
+        this.coach = coach;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
 }

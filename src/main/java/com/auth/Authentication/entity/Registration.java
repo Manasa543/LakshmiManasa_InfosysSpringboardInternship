@@ -4,20 +4,36 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "registrations")
-public class Registration {
+public class Registration{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private Long athleteId;
 
-    @ManyToOne
-    @JoinColumn(name = "event_id", nullable = false)
-    private Event event;
+    private Long eventId;
 
-    // Getters and Setters
+    private String registrationDate; // Stored as String to match the database schema
+
+    private String status;
+
+    public Long getAthleteId() {
+        return athleteId;
+    }
+
+    public void setAthleteId(Long athleteId) {
+        this.athleteId = athleteId;
+    }
+
+    public Long getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(Long eventId) {
+        this.eventId = eventId;
+    }
+
     public Long getId() {
         return id;
     }
@@ -26,19 +42,19 @@ public class Registration {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public String getRegistrationDate() {
+        return registrationDate;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setRegistrationDate(String registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
-    public Event getEvent() {
-        return event;
+    public String getStatus() {
+        return status;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -2,6 +2,7 @@ package com.auth.Authentication.entity;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "events")
 public class Event {
@@ -15,8 +16,11 @@ public class Event {
 
     private String eventName;
 
-    private String meet;
+    private String meetName;
 
+    private String location;
+
+    @Lob
     private String imageLink;
 
     // Getters and Setters
@@ -28,8 +32,10 @@ public class Event {
     public void setEventDate(String eventDate) { this.eventDate = eventDate; }
     public String getEventName() { return eventName; }
     public void setEventName(String eventName) { this.eventName = eventName; }
-    public String getMeet() { return meet; }
-    public void setMeet(String meet) { this.meet = meet; }
+    public String getMeetName() { return meetName; }
+    public void setMeetName(String meetName) { this.meetName = meetName; }
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
     public String getImageLink() { return imageLink; }
     public void setImageLink(String imageLink) { this.imageLink = imageLink; }
 }

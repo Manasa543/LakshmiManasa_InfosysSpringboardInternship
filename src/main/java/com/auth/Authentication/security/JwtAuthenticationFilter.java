@@ -35,9 +35,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String token = authorizationHeader.substring(7);
 
             if (jwtTokenProvider.validateToken(token)) {
-                String username = jwtTokenProvider.getUsernameFromToken(token);
+                String email = jwtTokenProvider.getEmailFromToken(token);
 
-                User userDetails = userDetailsService.findUserByUsername(username);
+                User userDetails = userDetailsService.findUserByEmail(email);
 
                 // No need to get password from request, as it's already authenticated when the JWT was created
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
